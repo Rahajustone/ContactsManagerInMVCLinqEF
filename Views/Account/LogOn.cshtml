@@ -1,0 +1,50 @@
+﻿@model ContactsManagerInMVCLinqEF.Models.LogOnModel
+
+@{
+    ViewBag.Title = "LogOn";
+}
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Login</legend>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(model => model.UserName)</td>
+                <td>
+                    @Html.EditorFor(model => model.UserName)
+                    @Html.ValidationMessageFor(model => model.UserName)
+                </td>
+            </tr>
+            <tr><td>   </td></tr>
+            <tr><td>   </td></tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Password)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Password)
+                    @Html.ValidationMessageFor(model => model.Password)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.RememberMe)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.RememberMe)
+                    @Html.ValidationMessageFor(model => model.RememberMe)
+                </td>
+            </tr>
+        </table>
+        <br />
+        @Html.ActionLink("Click here to Register", "Register", "Account")<br />
+        <input type="submit" value="Login" />
+    </fieldset>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

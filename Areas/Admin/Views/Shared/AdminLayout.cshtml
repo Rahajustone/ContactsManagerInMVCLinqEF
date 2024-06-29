@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<link href="~/Content/Styles/Site.css" rel="stylesheet" />
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <style>
+        .clearfix {
+            clear: both;
+        }
+
+        .menu ul {
+            padding: 0px;
+            list-style: none;
+        }
+
+        .menu ul li {
+            float: left;
+            text-align: center;
+            margin: 1px;
+            width: 120px;
+        }
+        .menu ul li a {
+            height: 30px;
+            display: block;
+            text-decoration: none;
+        }
+        .menu ul li ul {
+            display: none;
+        }
+            .menu ul li:hover div ul {
+                display: block;
+            }      
+    </style>
+</head>
+<body>
+    <div class="page">
+        <div class="header">
+            <div class="title">
+                <h1>Contacts Manager
+                </h1>
+            </div>
+            <div class="clearfix"></div>
+            <div class="loginDisplay">
+                @if (Request.IsAuthenticated)
+                {
+                    <text>[ @Html.ActionLink("Log Off", "LogOff", "Account", new { Area = "" }, new { }) ]</text>
+                }
+                else
+                {
+                    @:[ @Html.ActionLink("Log On", "LogOn", "Account") ]
+                }
+            </div>
+            <div class="clearfix"></div>
+            <div class="menu">
+                <ul>
+                    <li><a href="#">Manage<span class="popout level1">&#9660;</span></a>
+                        <div>
+                            <ul>
+                                <li><a class="level2" href="~/Admin/Country/Index">Country</a></li>
+                                <li><a class="level2" href="~/Admin/State/Index">State</a></li>
+                                <li><a class="level2" href="~/Admin/UserDetail/Index">User</a></li>
+                            </ul>
+                        </div>
+                    </li>
+                    <li><a class="level1" href="~/Admin/AddressBook/Index">Address Book</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            @RenderBody()
+        </div>
+    </div>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

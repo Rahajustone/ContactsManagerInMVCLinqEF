@@ -1,0 +1,149 @@
+﻿@model ContactsManagerInMVCLinqEF.AddressBook
+
+@{
+    ViewBag.Title = "Add Address";
+}
+
+<h2>Add Address</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AddressBook</legend>
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.FirstName)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.FirstName)
+                    @Html.ValidationMessageFor(model => model.FirstName)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.LastName)</td>
+                <td>
+                    @Html.EditorFor(model => model.LastName)
+                    @Html.ValidationMessageFor(model => model.LastName)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.EmailId)</td>
+                <td>
+                    @Html.EditorFor(model => model.EmailId)
+                    @Html.ValidationMessageFor(model => model.EmailId)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.PhoneNo)</td>
+                <td>
+                    @Html.EditorFor(model => model.PhoneNo)
+                    @Html.ValidationMessageFor(model => model.PhoneNo)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Address1)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Address1)
+                    @Html.ValidationMessageFor(model => model.Address1)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Address2)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Address2)
+                    @Html.ValidationMessageFor(model => model.Address2)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.Street)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.Street)
+                    @Html.ValidationMessageFor(model => model.Street)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.City)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.City)
+                    @Html.ValidationMessageFor(model => model.City)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.CountryName)
+                </td>
+                <td>
+                    @Html.DropDownList("PKCountryId", "Select")
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.FKStateId, "State")
+                </td>
+                <td>
+                    @Html.DropDownList("FKStateId", "Select")
+                    @Html.ValidationMessageFor(model => model.FKStateId)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.ZipCode)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ZipCode)
+                    @Html.ValidationMessageFor(model => model.ZipCode)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.IsActive)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="submit" value="Create" />
+                </td>
+                   <td>
+                       @Html.ActionLink("Back to List", "Index")
+                   </td>
+            </tr>
+        </table>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        $(document).ready(function () {
+            $('#PKCountryId').change(function (e) {
+                var id = $(this).val();
+                $.ajax({
+                    url: "./GetStates",
+                    data: { id: id },
+                    type: "GET"
+                }).success(function (data) {
+
+                    $("#FKStateId").empty();
+                    $.each(data, function (key, value) {
+                        $("#FKStateId").append($("<option></option>").val(value.PKStateId).html(value.StateName));
+                    });
+                })
+            })
+            $('#PKCountryId').trigger('change');
+        });
+    </script>
+}

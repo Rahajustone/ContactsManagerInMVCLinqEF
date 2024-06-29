@@ -1,0 +1,120 @@
+﻿@model ContactsManagerInMVCLinqEF.AddressBook
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>AddressBook</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PKAddressId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PKAddressId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.State.StateName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.State.StateName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.UserDetail.UserName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.UserDetail.UserName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.FirstName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.FirstName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.LastName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.LastName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.EmailId)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.EmailId)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.PhoneNo)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.PhoneNo)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address1)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address1)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Address2)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Address2)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Street)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Street)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.City)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.City)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ZipCode)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ZipCode)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CountryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CountryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StateName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StateName)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

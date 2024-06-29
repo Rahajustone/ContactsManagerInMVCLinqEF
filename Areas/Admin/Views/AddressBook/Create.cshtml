@@ -1,0 +1,131 @@
+﻿@model ContactsManagerInMVCLinqEF.AddressBook
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Address</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>AddressBook</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PKAddressId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PKAddressId)
+            @Html.ValidationMessageFor(model => model.PKAddressId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FKStateId, "State")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FKStateId", String.Empty)
+            @Html.ValidationMessageFor(model => model.FKStateId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FKUserId, "UserDetail")
+        </div>
+        <div class="editor-field">
+            @Html.DropDownList("FKUserId", String.Empty)
+            @Html.ValidationMessageFor(model => model.FKUserId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.FirstName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.FirstName)
+            @Html.ValidationMessageFor(model => model.FirstName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.LastName)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.LastName)
+            @Html.ValidationMessageFor(model => model.LastName)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.EmailId)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.EmailId)
+            @Html.ValidationMessageFor(model => model.EmailId)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.PhoneNo)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.PhoneNo)
+            @Html.ValidationMessageFor(model => model.PhoneNo)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address1)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address1)
+            @Html.ValidationMessageFor(model => model.Address1)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Address2)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Address2)
+            @Html.ValidationMessageFor(model => model.Address2)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Street)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Street)
+            @Html.ValidationMessageFor(model => model.Street)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.City)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.City)
+            @Html.ValidationMessageFor(model => model.City)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.ZipCode)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.ZipCode)
+            @Html.ValidationMessageFor(model => model.ZipCode)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.IsActive)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.IsActive)
+            @Html.ValidationMessageFor(model => model.IsActive)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,76 @@
+﻿@model ContactsManagerInMVCLinqEF.Country
+
+@{
+    ViewBag.Title = "Country Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2> CountryDetails</h2>
+
+<fieldset>
+    <legend>Country</legend>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.CountryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.CountryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ZipCodeStart)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ZipCodeStart)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.ZipCodeEnd)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.ZipCodeEnd)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div> 
+    @*<dl>
+        <dt>
+            @Html.DisplayNameFor(model => model.PKCountryId)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.PKCountryId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.CountryName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCodeStart)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ZipCodeStart)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ZipCodeEnd)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ZipCodeEnd)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.IsActive)
+        </dd>
+    </dl>*@
+
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new {  id=Model.PKCountryId  }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

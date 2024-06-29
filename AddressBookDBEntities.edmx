@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AddressBookDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddressBook">
+          <Key>
+            <PropertyRef Name="PKAddressId" />
+          </Key>
+          <Property Name="PKAddressId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKStateId" Type="int" Nullable="false" />
+          <Property Name="FKUserId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address1" Type="varchar" MaxLength="50" />
+          <Property Name="Address2" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Street" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="City" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCode" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="PKCountryId" />
+          </Key>
+          <Property Name="PKCountryId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CountryName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="ZipCodeStart" Type="bigint" Nullable="false" />
+          <Property Name="ZipCodeEnd" Type="bigint" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="PKStateId" />
+          </Key>
+          <Property Name="PKStateId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FKCountryId" Type="int" Nullable="false" />
+          <Property Name="StateName" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetails">
+          <Key>
+            <PropertyRef Name="PKUserId" />
+          </Key>
+          <Property Name="PKUserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" />
+          <Property Name="EmailId" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="PhoneNo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Address__FKState__5CD6CB2B">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="PKStateId" />
+            </Principal>
+            <Dependent Role="AddressBook">
+              <PropertyRef Name="FKStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Address__FKUserI__5DCAEF64">
+          <End Role="UserDetails" Type="Self.UserDetails" Multiplicity="1" />
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="PKUserId" />
+            </Principal>
+            <Dependent Role="AddressBook">
+              <PropertyRef Name="FKUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__State__FKCountry__239E4DCF">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="PKCountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="FKCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AddressBookDBModelStoreContainer">
+          <EntitySet Name="AddressBook" EntityType="Self.AddressBook" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="State" EntityType="Self.State" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetails" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Address__FKState__5CD6CB2B" Association="Self.FK__Address__FKState__5CD6CB2B">
+            <End Role="State" EntitySet="State" />
+            <End Role="AddressBook" EntitySet="AddressBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Address__FKUserI__5DCAEF64" Association="Self.FK__Address__FKUserI__5DCAEF64">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="AddressBook" EntitySet="AddressBook" />
+          </AssociationSet>
+          <AssociationSet Name="FK__State__FKCountry__239E4DCF" Association="Self.FK__State__FKCountry__239E4DCF">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="State" EntitySet="State" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AddressBookDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="AddressBook">
+          <Key>
+            <PropertyRef Name="PKAddressId" />
+          </Key>
+          <Property Name="PKAddressId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKStateId" Type="Int32" Nullable="false" />
+          <Property Name="FKUserId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Street" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCode" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="State" Relationship="Self.FK__Address__FKState__5CD6CB2B" FromRole="AddressBook" ToRole="State" />
+          <NavigationProperty Name="UserDetail" Relationship="Self.FK__Address__FKUserI__5DCAEF64" FromRole="AddressBook" ToRole="UserDetails" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="PKCountryId" />
+          </Key>
+          <Property Name="PKCountryId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CountryName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ZipCodeStart" Type="Int64" Nullable="false" />
+          <Property Name="ZipCodeEnd" Type="Int64" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="States" Relationship="Self.FK__State__FKCountry__239E4DCF" FromRole="Country" ToRole="State" />
+        </EntityType>
+        <EntityType Name="State">
+          <Key>
+            <PropertyRef Name="PKStateId" />
+          </Key>
+          <Property Name="PKStateId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FKCountryId" Type="Int32" Nullable="false" />
+          <Property Name="StateName" Type="String" MaxLength="20" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AddressBooks" Relationship="Self.FK__Address__FKState__5CD6CB2B" FromRole="State" ToRole="AddressBook" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__State__FKCountry__239E4DCF" FromRole="State" ToRole="Country" />
+        </EntityType>
+        <EntityType Name="UserDetail">
+          <Key>
+            <PropertyRef Name="PKUserId" />
+          </Key>
+          <Property Name="PKUserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PhoneNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="AddressBooks" Relationship="Self.FK__Address__FKUserI__5DCAEF64" FromRole="UserDetails" ToRole="AddressBook" />
+        </EntityType>
+        <Association Name="FK__Address__FKState__5CD6CB2B">
+          <End Role="State" Type="Self.State" Multiplicity="1" />
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="State">
+              <PropertyRef Name="PKStateId" />
+            </Principal>
+            <Dependent Role="AddressBook">
+              <PropertyRef Name="FKStateId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Address__FKUserI__5DCAEF64">
+          <End Role="UserDetails" Type="Self.UserDetail" Multiplicity="1" />
+          <End Role="AddressBook" Type="Self.AddressBook" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserDetails">
+              <PropertyRef Name="PKUserId" />
+            </Principal>
+            <Dependent Role="AddressBook">
+              <PropertyRef Name="FKUserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__State__FKCountry__239E4DCF">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="State" Type="Self.State" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="PKCountryId" />
+            </Principal>
+            <Dependent Role="State">
+              <PropertyRef Name="FKCountryId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AddressBookDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddressBooks" EntityType="Self.AddressBook" />
+          <EntitySet Name="Countries" EntityType="Self.Country" />
+          <EntitySet Name="States" EntityType="Self.State" />
+          <EntitySet Name="UserDetails" EntityType="Self.UserDetail" />
+          <AssociationSet Name="FK__Address__FKState__5CD6CB2B" Association="Self.FK__Address__FKState__5CD6CB2B">
+            <End Role="State" EntitySet="States" />
+            <End Role="AddressBook" EntitySet="AddressBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Address__FKUserI__5DCAEF64" Association="Self.FK__Address__FKUserI__5DCAEF64">
+            <End Role="UserDetails" EntitySet="UserDetails" />
+            <End Role="AddressBook" EntitySet="AddressBooks" />
+          </AssociationSet>
+          <AssociationSet Name="FK__State__FKCountry__239E4DCF" Association="Self.FK__State__FKCountry__239E4DCF">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="State" EntitySet="States" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AddressBookDBModelStoreContainer" CdmEntityContainer="AddressBookDBEntities">
+          <EntitySetMapping Name="AddressBooks">
+            <EntityTypeMapping TypeName="AddressBookDBModel.AddressBook">
+              <MappingFragment StoreEntitySet="AddressBook">
+                <ScalarProperty Name="PKAddressId" ColumnName="PKAddressId" />
+                <ScalarProperty Name="FKStateId" ColumnName="FKStateId" />
+                <ScalarProperty Name="FKUserId" ColumnName="FKUserId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="Address1" ColumnName="Address1" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="AddressBookDBModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="PKCountryId" ColumnName="PKCountryId" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="ZipCodeStart" ColumnName="ZipCodeStart" />
+                <ScalarProperty Name="ZipCodeEnd" ColumnName="ZipCodeEnd" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="States">
+            <EntityTypeMapping TypeName="AddressBookDBModel.State">
+              <MappingFragment StoreEntitySet="State">
+                <ScalarProperty Name="PKStateId" ColumnName="PKStateId" />
+                <ScalarProperty Name="FKCountryId" ColumnName="FKCountryId" />
+                <ScalarProperty Name="StateName" ColumnName="StateName" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetails">
+            <EntityTypeMapping TypeName="AddressBookDBModel.UserDetail">
+              <MappingFragment StoreEntitySet="UserDetails">
+                <ScalarProperty Name="PKUserId" ColumnName="PKUserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="PhoneNo" ColumnName="PhoneNo" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="true" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

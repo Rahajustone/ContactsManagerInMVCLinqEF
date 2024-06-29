@@ -1,0 +1,48 @@
+﻿@model ContactsManagerInMVCLinqEF.State
+
+@{
+    ViewBag.Title = "Add State";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Add State</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>State</legend>
+        <table>
+            <tr>
+                <td>@Html.LabelFor(model => model.FKCountryId, "Country")</td>
+                <td>
+                    @Html.DropDownList("FKCountryId", "Select Country")
+                    @Html.ValidationMessageFor(model => model.FKCountryId)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.StateName)</td>
+                <td>
+                    @Html.EditorFor(model => model.StateName)
+                    @Html.ValidationMessageFor(model => model.StateName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.IsActive)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive)
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Create" /></td>
+                <td>@Html.ActionLink("Back to List", "Index")</td>
+            </tr>
+        </table>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,123 @@
+﻿@model IEnumerable<ContactsManagerInMVCLinqEF.AddressBook>
+@using ContactsManagerInMVCLinqEF.BO;
+@{
+    ViewBag.Title = "Contacts Manager";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<p>
+    @Html.ActionLink("Add Address", "Create")
+</p>
+@using (Html.BeginForm())
+{
+    CountryBO objCountryBO = new CountryBO();
+    ViewBag.PKCountryId = new SelectList(objCountryBO.GetCountries(true), "PKCountryId", "CountryName");
+    @:Country:@Html.DropDownList("PKCountryId", ViewBag.PKCountryId as SelectList,"Select")
+    @Html.Label("FKStateId", "State:")
+    @Html.DropDownList("FKStateId", ViewBag.FKStateId as SelectList, "Select")
+    @:Active:
+    <select name="ShowDropDown">
+        <option value="">All</option>
+        <option value="true">Active</option>
+        <option value="false">InActive</option>
+    </select> 
+    <input type="submit" name="btnSearch" value="Search" />
+    <input type="submit" name="btnReset" value="Reset"/>
+}
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmailId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Street)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.City)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StateName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CountryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ZipCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsActive)
+        </th>
+       
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+       
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmailId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PhoneNo)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Street)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.City)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StateName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CountryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ZipCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsActive)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.PKAddressId  }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PKAddressId })
+        </td>
+    </tr>
+}
+</table>
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $('#PKCountryId').change(function (e) {
+                var id = $(this).val();
+                $.ajax({
+                    url: "./GetStates",
+                    data: { id: id },
+                    type: "GET"
+                }).success(function (data) {
+
+                    $("#FKStateId").empty();
+                    $.each(data, function (key, value) {
+                        $("#FKStateId").append($("<option></option>").val(value.PKStateId).html(value.StateName));
+                    });
+                })
+            })
+            $('#PKCountryId').trigger('change');
+        });
+    </script>
+}

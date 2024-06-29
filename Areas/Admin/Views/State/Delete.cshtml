@@ -1,0 +1,41 @@
+﻿@model ContactsManagerInMVCLinqEF.State
+
+@{
+    ViewBag.Title = "Delete State";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Delete State</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>State</legend>
+    <table>
+        <tr>
+            <td> @Html.DisplayNameFor(model => model.Country.CountryName)</td>
+            <td>
+                @Html.DisplayFor(model => model.Country.CountryName)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.StateName)</td>
+            <td>
+                @Html.DisplayFor(model => model.StateName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsActive)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

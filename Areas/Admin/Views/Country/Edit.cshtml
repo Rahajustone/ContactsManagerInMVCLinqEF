@@ -1,0 +1,60 @@
+﻿@model ContactsManagerInMVCLinqEF.Country
+
+@{
+    ViewBag.Title = "EditCountry";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Edit Country</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>Country</legend>
+        @Html.HiddenFor(model=>model.PKCountryId)
+        <table>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.CountryName)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.CountryName)
+                    @Html.ValidationMessageFor(model => model.CountryName)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.ZipCodeStart)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ZipCodeStart)
+                    @Html.ValidationMessageFor(model => model.ZipCodeStart)
+                </td>
+            </tr>
+            <tr>
+                <td>@Html.LabelFor(model => model.ZipCodeEnd)</td>
+                <td>
+                    @Html.EditorFor(model => model.ZipCodeEnd)
+                    @Html.ValidationMessageFor(model => model.ZipCodeEnd)
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.IsActive)
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.IsActive)
+                    @Html.ValidationMessageFor(model => model.IsActive)
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Save" /></td>
+                <td>@Html.ActionLink("Back to List", "Index")</td>
+            </tr>
+        </table>
+    </fieldset>
+}
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

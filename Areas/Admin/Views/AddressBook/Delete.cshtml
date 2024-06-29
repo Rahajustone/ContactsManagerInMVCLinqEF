@@ -1,0 +1,107 @@
+﻿@model ContactsManagerInMVCLinqEF.AddressBook
+
+@{
+    ViewBag.Title = "Delete Address";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>Delete Address</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>AddressBook</legend>
+    <table>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.UserDetail.UserName)</td>
+            <td>@Html.DisplayFor(model => model.UserDetail.UserName)</td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.FirstName)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.LastName)</td>
+            <td>
+                @Html.DisplayFor(model => model.LastName)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.EmailId)</td>
+            <td>
+                @Html.DisplayFor(model => model.EmailId)
+            </td>
+        </tr>
+        <tr>
+            <td>@Html.DisplayNameFor(model => model.PhoneNo)</td>
+            <td>
+                @Html.DisplayFor(model => model.PhoneNo)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Address1)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Address1)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Address2)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Address2)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.Street)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.Street)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.City)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.City)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.State.StateName)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.State.StateName)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.ZipCode)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.ZipCode)
+            </td>
+        </tr>
+        <tr>
+            <td>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </td>
+            <td>
+                @Html.DisplayFor(model => model.IsActive)
+            </td>
+        </tr>
+    </table>
+</fieldset>
+@using (Html.BeginForm()) {
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

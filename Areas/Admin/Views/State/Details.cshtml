@@ -1,0 +1,36 @@
+﻿@model ContactsManagerInMVCLinqEF.State
+
+@{
+    ViewBag.Title = "State Details";
+    Layout = "~/Areas/Admin/Views/Shared/AdminLayout.cshtml";
+}
+
+<h2>State Details</h2>
+
+<fieldset>
+    <legend>State</legend>
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Country.CountryName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Country.CountryName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.StateName)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.StateName)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.IsActive)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.IsActive)
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.PKStateId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
